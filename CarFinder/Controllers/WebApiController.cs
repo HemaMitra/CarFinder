@@ -20,7 +20,11 @@ namespace CarFinder.Controllers
     {   
         private ApplicationDbContext db = new ApplicationDbContext();
         
-        // Get AllYears
+        // Get AllYears from the cars table
+        /// <summary>
+        /// This action calls a stored procedure AllYears.
+        /// </summary>
+        /// <returns>List of all the years of datatype string.</returns>
         [HttpGet]
         [Route("AllYears")]
         public async Task<IHttpActionResult> AllYears()
@@ -29,6 +33,11 @@ namespace CarFinder.Controllers
         }
 
         // Get Makes By Year
+        /// <summary>
+        /// This action calls a stored procedure MakesByYear.
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns>A list of all makes of datatype string based on the input parameters.</returns>
         [HttpGet]
         [Route("MakesByYear")]
         public async Task<IHttpActionResult> MakesByYear(string year)
@@ -37,6 +46,12 @@ namespace CarFinder.Controllers
         }
 
         // Get Models By Year and Make
+        /// <summary>
+        /// This action calls a stored procedure ModelsByYearMake.
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="make"></param>
+        /// <returns>A list of all the models of datatype string based on the input parameters.</returns>
         [HttpGet]
         [Route("ModelsByYearMake")]
         public async Task<IHttpActionResult> ModelsByYearMake(string year, string make)
@@ -45,6 +60,13 @@ namespace CarFinder.Controllers
         }
 
         // Get Trims by Year, Make and Model
+        /// <summary>
+        /// This action calls a stored procedure Trims.
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="make"></param>
+        /// <param name="model"></param>
+        /// <returns>A list of all the trims of datatype string based on the input parameters.</returns>
         [HttpGet]
         [Route("Trims")]
         public async Task<IHttpActionResult> Trims(string year, string make, string model)
@@ -53,6 +75,11 @@ namespace CarFinder.Controllers
         }
 
         // Get Cars By Year
+        /// <summary>
+        /// This action calls a stored procedure CarsByYear.
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns>A list of all the cars based on the input parameter year.</returns>
         [HttpGet]
         [Route("CarsByYear")]
         public async Task<IHttpActionResult> CarsByYear(string year)
@@ -61,6 +88,12 @@ namespace CarFinder.Controllers
         }
 
         // Get Cars by Year and Make
+        /// <summary>
+        /// This action calls a stored procedure CarsByYearMake.
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="make"></param>
+        /// <returns>A list of cars based on the input parameters year and make.</returns>
         [HttpGet]
         [Route("CarsByYearMake")]
         public async Task<IHttpActionResult> CarsByYearMake(string year, string make)
@@ -69,6 +102,13 @@ namespace CarFinder.Controllers
         }
 
         // Get Cars by Year, Make and Model
+        /// <summary>
+        /// This action calls a stored procedure CarsYearMakeModel.
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="make"></param>
+        /// <param name="model"></param>
+        /// <returns>A list of cars based on the input parameters year, make and model.</returns>
         [HttpGet]
         [Route("CarsYearMakeModel")]
         public async Task<IHttpActionResult> CarsYearMakeModel(string year, string make, string model)
@@ -77,6 +117,14 @@ namespace CarFinder.Controllers
         }
 
         // Get Cars by Year, Make, Model and Trim
+        /// <summary>
+        /// This action calls a stored procedure CarsYearMakeModelTrim.
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="make"></param>
+        /// <param name="model"></param>
+        /// <param name="trim"></param>
+        /// <returns>A list of cars based on the input parameters year, make, model and trim.</returns>
         [HttpGet]
         [Route("CarsYearMakeModelTrim")]
         public async Task<IHttpActionResult> CarsYearMakeModelTrim(string year, string make, string model, string trim)
@@ -84,13 +132,37 @@ namespace CarFinder.Controllers
             return Ok(await db.CarsYearMakeModelTrim(year,make,model,trim));
         }
 
+        /// <summary>
+        /// This action calls a stored procedure GetSearchCar. Some of the parameters are optional. 
+        /// SORTING - It also sorts the data based on the column name provided in the imput (year,make, model_name,model_trim). 
+        /// If the column name for sort is not provided then the data will be sorted by ID.
+        /// PAGING - If paging is on, the number of records displayed will depend on the input parameter perpage.
+        ///             If paging is off, all the records will be displayed at once.
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="make"></param>
+        /// <param name="model"></param>
+        /// <param name="trim"></param>
+        /// <param name="filter"></param>
+        /// <param name="paging"></param>
+        /// <param name="page"></param>
+        /// <param name="perpage"></param>
+        /// <param name="sortcolumn"></param>
+        /// <param name="sortdirection"></param>
+        /// <returns>A list of cars based on the input parameters</returns>
         [HttpGet]
         [Route("GetSearchCar")]
-        public async Task<IHttpActionResult> GetSearchCar(string year, string make, string model, string trim, string filter, bool? paging)
+        public async Task<IHttpActionResult> GetSearchCar(string year, string make, string model, string trim, string filter, 
+            bool? paging, int page, int perpage, string sortcolumn,string sortdirection)
         {
-            return Ok(await db.GetSearchCar(year, make, model, trim, filter, paging));
+            return Ok(await db.GetSearchCar(year,make,model,trim,filter,paging,page,perpage,sortcolumn,sortdirection));
         }
 
+        /// <summary>
+        /// This action calls a stored procedure GetCar.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Image and recall information (if any) for the car specified by the id.</returns>
         [Route("GetCar")]
         public async Task<IHttpActionResult> GetCar(int id)
         {

@@ -36,7 +36,11 @@ namespace CarFinder.Models
 
         public DbSet<Car> Cars { get; set; }
 
-        // Get All Years
+        /// <summary>
+        /// Get all the years for which cars are listed in the database.
+        /// </summary>
+        /// <returns>A list of years</returns>
+        //Get All Years
         public async Task<List<string>> AllYears()
         {
             return await this.Database.SqlQuery<string>("AllYears").ToListAsync();
@@ -112,25 +116,21 @@ namespace CarFinder.Models
         }
 
         // Get Cars with paging and search
-        public async Task<List<Car>> GetSearchCar(string year,string make, string model, string trim, string filter, bool? paging)
+        public async Task<List<Car>> GetSearchCar(string year, string make, string model, string trim, string filter, bool? paging, int page, int perpage, string sortcolumn, string sortdirection)
         {
-            //var yearParm = new SqlParameter("@year", year);
-            //var makeParm = new SqlParameter("@make", make ?? "");
-            //var modelParm = new SqlParameter("@model", model ?? "");
-            //var trimParm = new SqlParameter("@trim", trim ?? "");
-            //var filterParm = new SqlParameter("@filter", filter ?? "");
-            //var pagingParm = new SqlParameter("@paging", paging ?? false);
-
             var yearParm = new SqlParameter("@year", year);
-            var makeParm = new SqlParameter("@make", make);
-            var modelParm = new SqlParameter("@model", model);
-            var trimParm = new SqlParameter("@trim", trim);
+            var makeParm = new SqlParameter("@make", make ?? "");
+            var modelParm = new SqlParameter("@model", model ?? "");
+            var trimParm = new SqlParameter("@trim", trim ?? "");
             var filterParm = new SqlParameter("@filter", filter ?? "");
-            var pagingParm = new SqlParameter("@paging", paging);
-
+            var pagingParm = new SqlParameter("@paging", paging ?? false);
+            var pageParm = new SqlParameter("@page", page);
+            var perPageParm = new SqlParameter("@perpage", perpage);
+            var sortcolumnParm = new SqlParameter("@sortcolumn",sortcolumn);
+            var sortdirectionParm = new SqlParameter("@sortdirection", sortdirection);
 
             var filtered = await this.Database.SqlQuery<Car>
-                ("GetSearchCar @year,@make,@model,@trim,@filter,@paging", yearParm, makeParm, modelParm, trimParm, filterParm, pagingParm).ToListAsync();
+                ("GetSearchCar @year,@make,@model,@trim,@filter,@paging,@page,@perpage,@sortcolumn,@sortdirection",yearParm,makeParm,modelParm,trimParm,filterParm,pagingParm,pageParm,perPageParm,sortcolumnParm,sortdirectionParm).ToListAsync();
             return filtered;
         }
 
