@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="modal-header">
+        <div class="modal-title">Car <span class="text-warning">Details</span></div>
+        <button class="btn btn-primary pull-right margintop" ng-click="cm.cancel()">X</button>
+    </div>
+    <br>
+
+    <div class="modal-body text-black bg-light-blue margin-top">
+        <strong class="text-center">
+            {{cm.car.car.make}} - {{cm.car.car.model_name}}
+        </strong>
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <img src="{{cm.car.imgUrl}}" class="imgsize">
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        Year
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                        {{cm.car.car.model_year}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        Trim
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                        {{cm.car.car.model_trim}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        Body Style
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                        {{cm.car.car.body_style}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        Fuel Type
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                        {{cm.car.car.engine_fuel}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        Fuel Capacity
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                        {{cm.car.car.fuel_capacity_l}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        Engine Position
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                        {{cm.car.car.engine_position}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        Engine Power (RPM)
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                        {{cm.car.car.engine_power_rpm}}
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        Transmission Type
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                        {{cm.car.car.transmission_type}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        Times Sold In US
+                    </div>
+                    <div class="col-md-8 col-sm-8">
+                        {{cm.car.car.sold_in_us}}
+                    </div>
+                </div>
+            </div>
+        </div> <!-- Row End --><br>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <strong class="text-center">
+                    {{cm.car.car.make}} - {{cm.car.car.model_name}}
+                </strong>Recall Information - {{ cm.car.recalls.Count }} Recalls
+
+                <uib-tabset>
+                    <uib-tab ng-repeat="result in cm.car.recalls.Results"
+                             heading="Recall" active="tab.active" disable="tab.disabled">
+                        <br>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3">
+                                Manufacturer
+                            </div>
+                            <div class="col-md-offset-5  col-sm-offset-5">
+                                {{ result.Manufacturer}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3">
+                                NHTSA Campaign Number
+                            </div>
+                            <div class="col-md-offset-5 col-sm-offset-5">
+                                {{ result.NHTSACampaignNumber }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3">NHTSA Action Number</div>
+                            <div class="col-md-offset-5 col-sm-offset-5">{{ result.NHTSAActionNumber }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3">Component</div>
+                            <div class="col-md-offset-5 col-sm-offset-5">{{ result.Component }}</div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2">Summary</div>
+                            <div class="col-md-10 col-sm-10">{{ result.Summary }}</div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2">Consequence</div>
+                            <div class="col-md-10 col-sm-10">{{ result.Conequence }}</div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2">Remedy</div>
+                            <div class="col-md-10 col-sm-10">{{ result.Remedy }}</div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2">Notes</div>
+                            <div class="col-md-10 col-sm-10">{{ result.Notes }}</div>
+                        </div>
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+        </div>
+    </div><!-- Modal Body End -->
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="cm.ok()">Close</button>
+    </div> 
+</body>
+</html>

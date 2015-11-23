@@ -570,11 +570,102 @@
         </member>
         <member name="M:CarFinder.Controllers.WebApiController.AllYears">
             <summary>
-            The action AllYears fetches all the years for which cars are listed in the database.
+            This action calls a stored procedure AllYears.
             </summary>
-            <parm>No input parameters. 
-            </parm>
-            <returns>List of all the years in type string </returns>
+            <returns>List of all the years of datatype string.</returns>
+        </member>
+        <member name="M:CarFinder.Controllers.WebApiController.MakesByYear(CarFinder.Controllers.WebApiController.ControllerParams)">
+            <summary>
+            This action calls a stored procedure MakesByYear.
+            </summary>
+            <param name="year"></param>
+            <returns>A list of all makes of datatype string based on the input parameters.</returns>
+        </member>
+        <member name="M:CarFinder.Controllers.WebApiController.ModelsByYearMake(CarFinder.Controllers.WebApiController.ControllerParams)">
+            <summary>
+            This action calls a stored procedure ModelsByYearMake.
+            </summary>
+            <param name="year"></param>
+            <param name="make"></param>
+            <returns>A list of all the models of datatype string based on the input parameters.</returns>
+        </member>
+        <member name="M:CarFinder.Controllers.WebApiController.Trims(CarFinder.Controllers.WebApiController.ControllerParams)">
+            <summary>
+            This action calls a stored procedure Trims.
+            </summary>
+            <param name="year"></param>
+            <param name="make"></param>
+            <param name="model"></param>
+            <returns>A list of all the trims of datatype string based on the input parameters.</returns>
+        </member>
+        <member name="M:CarFinder.Controllers.WebApiController.CarsByYear(CarFinder.Controllers.WebApiController.ControllerParams)">
+            <summary>
+            This action calls a stored procedure CarsByYear.
+            </summary>
+            <param name="year"></param>
+            <returns>A list of all the cars based on the input parameter year.</returns>
+        </member>
+        <member name="M:CarFinder.Controllers.WebApiController.CarsByYearMake(CarFinder.Controllers.WebApiController.ControllerParams)">
+            <summary>
+            This action calls a stored procedure CarsByYearMake.
+            </summary>
+            <param name="year"></param>
+            <param name="make"></param>
+            <returns>A list of cars based on the input parameters year and make.</returns>
+        </member>
+        <member name="M:CarFinder.Controllers.WebApiController.CarsYearMakeModel(CarFinder.Controllers.WebApiController.ControllerParams)">
+            <summary>
+            This action calls a stored procedure CarsYearMakeModel.
+            </summary>
+            <param name="year"></param>
+            <param name="make"></param>
+            <param name="model"></param>
+            <returns>A list of cars based on the input parameters year, make and model.</returns>
+        </member>
+        <member name="M:CarFinder.Controllers.WebApiController.CarsYearMakeModelTrim(CarFinder.Controllers.WebApiController.ControllerParams)">
+            <summary>
+            This action calls a stored procedure CarsYearMakeModelTrim.
+            </summary>
+            <param name="year"></param>
+            <param name="make"></param>
+            <param name="model"></param>
+            <param name="trim"></param>
+            <returns>A list of cars based on the input parameters year, make, model and trim.</returns>
+        </member>
+        <member name="M:CarFinder.Controllers.WebApiController.GetSearchCar(CarFinder.Controllers.WebApiController.ControllerParams)">
+            <summary>
+            This action calls a stored procedure GetSearchCar. Some of the parameters are optional. 
+            SORTING - It also sorts the data based on the column name provided in the imput (year,make, model_name,model_trim). 
+            If the column name for sort is not provided then the data will be sorted by ID.
+            PAGING - If paging is on, the number of records displayed will depend on the input parameter perpage.
+                        If paging is off, all the records will be displayed at once.
+            </summary>
+            <param name="selected">Object of class ControllerParm</param>
+            <returns></returns>
+        </member>
+        <member name="M:CarFinder.Controllers.WebApiController.GetCarCount(CarFinder.Controllers.WebApiController.ControllerParams)">
+            <summary>
+            Gets the count of selected cars for server side data tables
+            </summary>
+            <param name="selected"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CarFinder.Controllers.WebApiController.GetCar(CarFinder.Controllers.WebApiController.IdParm)">
+            <summary>
+            This action calls a stored procedure GetCar.
+            </summary>
+            <param name="id"></param>
+            <returns>Image and recall information (if any) for the car specified by the id.</returns>
+        </member>
+        <member name="T:CarFinder.Controllers.WebApiController.IdParm">
+            <summary>
+            class created to pass Id as parameter to getCar()
+            </summary>
+        </member>
+        <member name="T:CarFinder.Controllers.WebApiController.ControllerParams">
+            <summary>
+            Parameters for GetSearchCars
+            </summary>
         </member>
         <member name="M:CarFinder.Models.ApplicationDbContext.AllYears">
             <summary>

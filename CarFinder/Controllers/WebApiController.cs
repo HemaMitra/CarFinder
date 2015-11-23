@@ -19,13 +19,40 @@ namespace CarFinder.Controllers
     public class WebApiController : ApiController
     {   
         private ApplicationDbContext db = new ApplicationDbContext();
-        
+
+
+        /// <summary>
+        /// class created to pass Id as parameter to getCar()
+        /// </summary>
+        public class IdParm
+        {
+            public int id { get; set; }
+        }
+        /// <summary>
+        /// Parameters for GetSearchCars
+        /// </summary>
+        public class ControllerParams
+        {
+            public string year { get; set; }
+            public string make { get; set; }
+            public string model { get; set; }
+            public string trim { get; set; }
+            public string filter { get; set; }
+            public bool? paging { get; set; }
+            public int? page { get; set; }
+            public int? perpage { get; set; }
+            public string sortcolumn { get; set; }
+            public string sortdirection { get; set; }
+            public bool? sortByReverse { get; set; }
+            
+        }
+
         // Get AllYears from the cars table
         /// <summary>
         /// This action calls a stored procedure AllYears.
         /// </summary>
         /// <returns>List of all the years of datatype string.</returns>
-        [HttpGet]
+        [HttpPost]
         [Route("AllYears")]
         public async Task<IHttpActionResult> AllYears()
         {
@@ -38,11 +65,12 @@ namespace CarFinder.Controllers
         /// </summary>
         /// <param name="year"></param>
         /// <returns>A list of all makes of datatype string based on the input parameters.</returns>
-        [HttpGet]
+        
+        [HttpPost]
         [Route("MakesByYear")]
-        public async Task<IHttpActionResult> MakesByYear(string year)
+        public async Task<IHttpActionResult> MakesByYear(ControllerParams selected)
         {
-            return Ok(await db.MakesByYear(year));
+            return Ok(await db.MakesByYear(selected.year));
         }
 
         // Get Models By Year and Make
@@ -52,11 +80,12 @@ namespace CarFinder.Controllers
         /// <param name="year"></param>
         /// <param name="make"></param>
         /// <returns>A list of all the models of datatype string based on the input parameters.</returns>
-        [HttpGet]
+        
+        [HttpPost]
         [Route("ModelsByYearMake")]
-        public async Task<IHttpActionResult> ModelsByYearMake(string year, string make)
+        public async Task<IHttpActionResult> ModelsByYearMake(ControllerParams selected)
         {
-            return Ok(await db.ModelsByYearMake(year,make));
+            return Ok(await db.ModelsByYearMake(selected.year,selected.make));
         }
 
         // Get Trims by Year, Make and Model
@@ -67,11 +96,12 @@ namespace CarFinder.Controllers
         /// <param name="make"></param>
         /// <param name="model"></param>
         /// <returns>A list of all the trims of datatype string based on the input parameters.</returns>
-        [HttpGet]
+        
+        [HttpPost]
         [Route("Trims")]
-        public async Task<IHttpActionResult> Trims(string year, string make, string model)
+        public async Task<IHttpActionResult> Trims(ControllerParams selected)
         {
-            return Ok(await db.Trims(year, make, model));
+            return Ok(await db.Trims(selected.year, selected.make, selected.model));
         }
 
         // Get Cars By Year
@@ -80,11 +110,12 @@ namespace CarFinder.Controllers
         /// </summary>
         /// <param name="year"></param>
         /// <returns>A list of all the cars based on the input parameter year.</returns>
-        [HttpGet]
+        
+        [HttpPost]
         [Route("CarsByYear")]
-        public async Task<IHttpActionResult> CarsByYear(string year)
+        public async Task<IHttpActionResult> CarsByYear(ControllerParams selected)
         {
-            return Ok(await db.CarsByYear(year));
+            return Ok(await db.CarsByYear(selected.year));
         }
 
         // Get Cars by Year and Make
@@ -94,11 +125,12 @@ namespace CarFinder.Controllers
         /// <param name="year"></param>
         /// <param name="make"></param>
         /// <returns>A list of cars based on the input parameters year and make.</returns>
-        [HttpGet]
+        
+        [HttpPost]
         [Route("CarsByYearMake")]
-        public async Task<IHttpActionResult> CarsByYearMake(string year, string make)
+        public async Task<IHttpActionResult> CarsByYearMake(ControllerParams selected)
         {
-            return Ok(await db.CarsByYearMake(year,make));
+            return Ok(await db.CarsByYearMake(selected.year,selected.make));
         }
 
         // Get Cars by Year, Make and Model
@@ -109,11 +141,11 @@ namespace CarFinder.Controllers
         /// <param name="make"></param>
         /// <param name="model"></param>
         /// <returns>A list of cars based on the input parameters year, make and model.</returns>
-        [HttpGet]
+        [HttpPost]
         [Route("CarsYearMakeModel")]
-        public async Task<IHttpActionResult> CarsYearMakeModel(string year, string make, string model)
+        public async Task<IHttpActionResult> CarsYearMakeModel(ControllerParams selected)
         {
-            return Ok(await db.CarsYearMakeModel(year, make, model));
+            return Ok(await db.CarsYearMakeModel(selected.year, selected.make, selected.model));
         }
 
         // Get Cars by Year, Make, Model and Trim
@@ -125,13 +157,15 @@ namespace CarFinder.Controllers
         /// <param name="model"></param>
         /// <param name="trim"></param>
         /// <returns>A list of cars based on the input parameters year, make, model and trim.</returns>
-        [HttpGet]
+        [HttpPost]
         [Route("CarsYearMakeModelTrim")]
-        public async Task<IHttpActionResult> CarsYearMakeModelTrim(string year, string make, string model, string trim)
+        public async Task<IHttpActionResult> CarsYearMakeModelTrim(ControllerParams selected)
         {
-            return Ok(await db.CarsYearMakeModelTrim(year,make,model,trim));
+            return Ok(await db.CarsYearMakeModelTrim(selected.year,selected.make,selected.model,selected.trim));
         }
 
+        
+        
         /// <summary>
         /// This action calls a stored procedure GetSearchCar. Some of the parameters are optional. 
         /// SORTING - It also sorts the data based on the column name provided in the imput (year,make, model_name,model_trim). 
@@ -139,35 +173,41 @@ namespace CarFinder.Controllers
         /// PAGING - If paging is on, the number of records displayed will depend on the input parameter perpage.
         ///             If paging is off, all the records will be displayed at once.
         /// </summary>
-        /// <param name="year"></param>
-        /// <param name="make"></param>
-        /// <param name="model"></param>
-        /// <param name="trim"></param>
-        /// <param name="filter"></param>
-        /// <param name="paging"></param>
-        /// <param name="page"></param>
-        /// <param name="perpage"></param>
-        /// <param name="sortcolumn"></param>
-        /// <param name="sortdirection"></param>
-        /// <returns>A list of cars based on the input parameters</returns>
-        [HttpGet]
+        /// <param name="selected">Object of class ControllerParm</param>
+        /// <returns></returns>
+        [HttpPost]
         [Route("GetSearchCar")]
-        public async Task<IHttpActionResult> GetSearchCar(string year, string make, string model, string trim, string filter, 
-            bool? paging, int page, int perpage, string sortcolumn,string sortdirection)
+        public async Task<IHttpActionResult> GetSearchCar(ControllerParams selected)
         {
-            return Ok(await db.GetSearchCar(year,make,model,trim,filter,paging,page,perpage,sortcolumn,sortdirection));
+            return Ok(await db.GetSearchCar(selected.year,selected.make,selected.model,selected.trim,selected.filter,selected.paging,selected.page,selected.perpage,
+                selected.sortcolumn,selected.sortdirection,selected.sortByReverse));
         }
+
+        /// <summary>
+        /// Gets the count of selected cars for server side data tables
+        /// </summary>
+        /// <param name="selected"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("GetCarCount")]
+        public async Task<IHttpActionResult> GetCarCount(ControllerParams selected)
+        {
+            return Ok(await db.GetCarCount(selected.year, selected.make, selected.model, selected.trim, selected.filter));
+        }
+
+
 
         /// <summary>
         /// This action calls a stored procedure GetCar.
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Image and recall information (if any) for the car specified by the id.</returns>
+        [HttpPost]
         [Route("GetCar")]
-        public async Task<IHttpActionResult> GetCar(int id)
+        public async Task<IHttpActionResult> GetCar(IdParm id)
         {
             // Getting car images through Bing Search 
-            var car = db.Cars.Find(id);
+            var car = db.Cars.Find(id.id);
             if (car == null)
                 return await Task.FromResult(NotFound());
 

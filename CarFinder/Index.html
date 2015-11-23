@@ -1,0 +1,503 @@
+﻿
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Car Lister</title>
+    <!--<link href="/css/bootstrap.min.css" rel="stylesheet" />-->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+     <link href="/Content/trNgGrid.css" rel="stylesheet" />
+    <link href="/Content/Site.css" rel="stylesheet" />
+    <link href="/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/jquery.fancybox.css" rel="stylesheet" />
+   
+    <link href="/css/owl.carousel.css" rel="stylesheet" />
+    <link href="/css/slit-slider.css" rel="stylesheet" />
+    <link href="/css/main.css" rel="stylesheet" />
+    <link href="/css/animate.css" rel="stylesheet" />
+    <script src="/js/modernizr-2.6.2.min.js"></script>
+</head>
+<body id="body">
+
+    <!-- preloader -->
+    <div id="preloader">
+        <div class="loder-box">
+            <div class="battery"></div>
+        </div>
+    </div>
+    <!-- end preloader -->
+    <h2 class="margintop">
+        Car<span class="text-warning">Finder</span>
+    </h2>
+
+    <main class="site-content" role="main">
+        
+        <!--
+        Home Slider
+        ==================================== -->
+        <!--<h2>
+            <a href="#body">Car<span class="text-warning">Finder</span></a>
+        </h2>-->
+
+            <section id="home-slider">
+            
+                <div id="slider" class="sl-slider-wrapper">
+
+                <div class="sl-slider">
+                                        
+                    <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+
+                        <div class="bg-img bg-img-1"></div>
+
+                        <div class="slide-caption">
+                            <div class="caption-content">
+                                <h2 class="animated fadeInDown">Car <span class="text-warning">Finder</span></h2>
+                                <span class="animated fadeInDown">
+                                    Searches all the cars manufactured between <br>1936 and 2015
+                                </span>
+                                <a href="#testimonials" class="btn btn-blue btn-effect">Start Searching</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
+
+                        <div class="bg-img bg-img-2"></div>
+                        <div class="slide-caption">
+                            <div class="caption-content">
+                                <h2>Car <span class="text-warning">Finder</span></h2>
+                                <span>Shows Car Pictures</span>
+                                <a href="#testimonials" class="btn btn-blue btn-effect">Start Searching</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
+
+                        <div class="bg-img bg-img-3"></div>
+                        <div class="slide-caption">
+                            <div class="caption-content">
+                                <h2>Car <span class="text-warning">Finder</span></h2>
+                                <span>See recall information if any listed with NHTSA</span>
+                                <a href="#testimonials" class="btn btn-blue btn-effect">Start Searching</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div><!-- /sl-slider -->
+                <!--
+                <nav id="nav-arrows" class="nav-arrows">
+                    <span class="nav-arrow-prev">Previous</span>
+                    <span class="nav-arrow-next">Next</span>
+                </nav>
+                -->
+
+                <nav id="nav-arrows" class="nav-arrows hidden-xs hidden-sm visible-md visible-lg">
+                    <a href="javascript:;" class="sl-prev">
+                        <i class="fa fa-angle-left fa-3x"></i>
+                    </a>
+                    <a href="javascript:;" class="sl-next">
+                        <i class="fa fa-angle-right fa-3x"></i>
+                    </a>
+                </nav>
+
+
+                <nav id="nav-dots" class="nav-dots visible-xs visible-sm hidden-md hidden-lg">
+                    <span class="nav-dot-current"></span>
+                    <span></span>
+                    <span></span>
+                </nav>
+
+            </div><!-- /slider-wrapper -->
+        </section>
+
+
+        <br>
+
+        <!-- Testimonial section -->
+        <section id="testimonials" class="parallax topmargin">
+            <div class="overlay">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="sec-title text-center white wow animated fadeInDown">
+                            <h2>Search for your dream car here</h2>
+                        </div>
+
+                        <div id="testimonial" class="wow animated fadeInUp parallax-zindex">
+                            <div class="clearfix">
+                                <div ng-app="car-finder">
+                                    <div ng-controller="CarController as carCtrl" ng-cloak>
+                                        <div class="row">
+                                            <div class="col-md-3 col-sm-3">
+                                                <h4 class="text-white"><strong>Select Year</strong></h4>
+                                            </div>
+                                            <div class="col-md-3 col-sm-3">
+                                                <h4 class="text-white"><strong>Select Make</strong></h4>
+                                            </div>
+                                            <div class="col-md-3 col-sm-3">
+                                                <h4 class="text-white"><strong>Select Model</strong></h4>
+                                            </div>
+                                            <div class="col-md-3 col-sm-3">
+                                                <h4 class="text-white"><strong>Select Trim</strong></h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 col-sm-3">
+                                                <select data-ng-model="carCtrl.selected.year"
+                                                        data-ng-options="year for year in carCtrl.options.years"
+                                                        data-ng-change="carCtrl.getMakes()" class="selectStyle"></select>
+                                            </div>
+                                            <div class="col-md-3 col-sm-3">
+                                                <select data-ng-model="carCtrl.selected.make"
+                                                        data-ng-options="make for make in carCtrl.options.makes"
+                                                        data-ng-change="carCtrl.getModels()" class="selectStyle"></select>
+                                            </div>
+                                            <div class="col-md-3 col-sm-3">
+                                                <select data-ng-model="carCtrl.selected.model"
+                                                        data-ng-options="model for model in carCtrl.options.models"
+                                                        data-ng-change="carCtrl.getTrims()" class="selectStyle"></select>
+                                            </div>
+                                            <div class="col-md-3 col-sm-3">
+                                                <select data-ng-model="carCtrl.selected.trim"
+                                                        data-ng-options="trim for trim in carCtrl.options.trims"
+                                                        data-ng-change="carCtrl.GetSearchCar()" class="selectStyle"></select>
+                                            </div>
+
+                                        </div>
+                                        <br><br>
+
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12">
+                                                <table tr-ng-grid="" items="carCtrl.cars"
+                                                       total-items="carCtrl.count"
+                                                       on-data-required="carCtrl.GetSearchCar()"
+                                                       page-items="carCtrl.selected.perpage"
+                                                       current-page="carCtrl.selected.page"
+                                                       order-by="carCtrl.selected.sortcolumn"
+                                                       order-by-reverse="carCtrl.selected.sortByReverse"
+                                                       filter-by="carCtrl.selected.filter"
+                                                       fields="['make','model_name','model_trim','body_style']"
+                                                       class="bg-white">
+                                                    <thead>
+                                                        <tr>
+                                                            <th field-name="make" display-name="Make" enable-filtering="false"
+                                                                order-by-reverse="carCtrl.selected.sortByReverse" filter- by="carCtrl.selected.filter"></th>
+                                                            <th field-name="model_name" display-name="Model" enable-filtering="false"
+                                                                order-by-reverse="carCtrl.selected.sortByReverse" filter-by="carCtrl.selected.filter"></th>
+                                                            <th field-name="model_trim" display-name="Trim" enable-filtering="false"
+                                                                order-by-reverse="carCtrl.selected.sortByReverse" filter-by="carCtrl.selected.filter"></th>
+                                                            <th field-name="body_style" display-name="Style" enable-filtering="false"
+                                                                order-by-reverse="carCtrl.selected.sortByReverse" filter-by="carCtrl.selected.filter"></th>
+                                                            <th display-name="Action" enable-sorting="false" enable-filtering="false" display- align="center"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tr>
+                                                        <td>
+                                                            <button type="button" class="btn  btn-sm btn-primary btn-effect"
+                                                                    ng-click="carCtrl.open(gridItem.id)">
+                                                                View
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+                                                <script type="text/ng-template" id="carModal.html">
+                                                    <div class="modal-header">
+                                                        <div class="modal-title">Car <span class="text-warning">Details</span></div>
+                                                        <button class="btn btn-primary pull-right margintop" ng-click="cm.cancel()">X</button>
+                                                    </div>
+                                                    <br>
+                                                    <div class="modal-body text-black bg-light-blue margin-top">
+                                                        <strong class="text-center">
+                                                            {{cm.car.car.make}} - {{cm.car.car.model_name}}
+                                                        </strong>
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <img src="{{cm.car.imgUrl}}" class="imgsize">
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <div class="row">
+                                                                    <div class="col-md-4 col-sm-4">
+                                                                        Year
+                                                                    </div>
+                                                                    <div class="col-md-8 col-sm-8">
+                                                                        {{cm.car.car.model_year}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4 col-sm-4">
+                                                                        Trim
+                                                                    </div>
+                                                                    <div class="col-md-8 col-sm-8">
+                                                                        {{cm.car.car.model_trim}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4 col-sm-4">
+                                                                        Body Style
+                                                                    </div>
+                                                                    <div class="col-md-8 col-sm-8">
+                                                                        {{cm.car.car.body_style}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4 col-sm-4">
+                                                                        Fuel Type
+                                                                    </div>
+                                                                    <div class="col-md-8 col-sm-8">
+                                                                        {{cm.car.car.engine_fuel}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4 col-sm-4">
+                                                                        Fuel Capacity
+                                                                    </div>
+                                                                    <div class="col-md-8 col-sm-8">
+                                                                        {{cm.car.car.fuel_capacity_l}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4 col-sm-4">
+                                                                        Engine Position
+                                                                    </div>
+                                                                    <div class="col-md-8 col-sm-8">
+                                                                        {{cm.car.car.engine_position}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4 col-sm-4">
+                                                                        Engine Power (RPM)
+                                                                    </div>
+                                                                    <div class="col-md-8 col-sm-8">
+                                                                        {{cm.car.car.engine_power_rpm}}
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="row">
+                                                                    <div class="col-md-4 col-sm-4">
+                                                                        Transmission Type
+                                                                    </div>
+                                                                    <div class="col-md-8 col-sm-8">
+                                                                        {{cm.car.car.transmission_type}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-4 col-sm-4">
+                                                                        Times Sold In US
+                                                                    </div>
+                                                                    <div class="col-md-8 col-sm-8">
+                                                                        {{cm.car.car.sold_in_us}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div> <!-- Row End --><br>
+                                                        <div class="row">
+                                                            <div class="col-md-12 col-sm-12">
+                                                                <strong class="text-center">
+                                                                    Recall Information - {{ cm.car.recalls.Count }} Recalls
+                                                                </strong>
+
+                                                                <uib-tabset>
+                                                                    <uib-tab ng-repeat="result in cm.car.recalls.Results"
+                                                                             heading="Recall" active="tab.active" disable="tab.disabled">
+                                                                        <br>
+                                                                        <div class="row">
+                                                                            <div class="col-md-3 col-sm-3">
+                                                                                Manufacturer
+                                                                            </div>
+                                                                            <div class="col-md-offset-5  col-sm-offset-5">
+                                                                                {{ result.Manufacturer}}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-3 col-sm-3">
+                                                                                NHTSA Campaign Number
+                                                                            </div>
+                                                                            <div class="col-md-offset-5 col-sm-offset-5">
+                                                                                {{ result.NHTSACampaignNumber }}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-3 col-sm-3">NHTSA Action Number</div>
+                                                                            <div class="col-md-offset-5 col-sm-offset-5">{{ result.NHTSAActionNumber }}</div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-3 col-sm-3">Component</div>
+                                                                            <div class="col-md-offset-5 col-sm-offset-5">{{ result.Component }}</div>
+                                                                        </div><br>
+                                                                        <div class="row">
+                                                                            <div class="col-md-2 col-sm-2">Summary</div>
+                                                                            <div class="col-md-10 col-sm-10">{{ result.Summary }}</div>
+                                                                        </div><br>
+                                                                        <div class="row">
+                                                                            <div class="col-md-2 col-sm-2">Consequence</div>
+                                                                            <div class="col-md-10 col-sm-10">{{ result.Conequence }}</div>
+                                                                        </div><br>
+                                                                        <div class="row">
+                                                                            <div class="col-md-2 col-sm-2">Remedy</div>
+                                                                            <div class="col-md-10 col-sm-10">{{ result.Remedy }}</div>
+                                                                        </div><br>
+                                                                        <div class="row">
+                                                                            <div class="col-md-2 col-sm-2">Notes</div>
+                                                                            <div class="col-md-10 col-sm-10">{{ result.Notes }}</div>
+                                                                        </div>
+                                                                    </uib-tab>
+                                                                </uib-tabset>
+                                                            </div>
+                                                        </div>
+                                                    </div><!-- Modal Body End -->
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-primary" ng-click="cm.ok()">Close</button>
+                                                    </div>
+
+
+
+
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end Testimonial section -->
+    <!-- Template End -->
+
+    <div ng-app="car-finder">
+        <div ng-controller="CarController as carCtrl" ng-cloak>
+            <div class="row">
+                <div class="col-md-3 col-sm-3">
+                    <h5>Select Years</h5>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <h5>Select Make</h5>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <h5>Select Model</h5>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <h5>Select Trim</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-3">
+                    <select data-ng-model="carCtrl.selected.year"
+                            data-ng-options="year for year in carCtrl.options.years"
+                            data-ng-change="carCtrl.getMakes()"></select>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <select data-ng-model="carCtrl.selected.make"
+                            data-ng-options="make for make in carCtrl.options.makes"
+                            data-ng-change="carCtrl.getModels()"></select>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <select data-ng-model="carCtrl.selected.model"
+                            data-ng-options="model for model in carCtrl.options.models"
+                            data-ng-change="carCtrl.getTrims()"></select>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <select data-ng-model="carCtrl.selected.trim"
+                            data-ng-options="trim for trim in carCtrl.options.trims"
+                            data-ng-change="carCtrl.GetSearchCar()"></select>
+                </div>
+
+            </div>
+            <br><br>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+
+                    <table tr-ng-grid="" items="carCtrl.cars"
+                           total-items="carCtrl.count"
+                           on-data-required="carCtrl.GetSearchCar()"
+                           page-items="carCtrl.selected.perpage"
+                           current-page="carCtrl.selected.page"
+                           order-by="carCtrl.selected.sortcolumn"
+                           order-by-reverse="carCtrl.selected.sortByReverse"
+                           filter-by="carCtrl.selected.filter"
+                           fields="['make','model_name','model_trim','body_style']">
+                        <thead>
+                            <tr>
+                                <th field-name="make" display-name="Make" enable-filtering="true"
+                                    order-by-reverse="carCtrl.selected.sortByReverse" filter-by="carCtrl.selected.filter"></th>
+                                <th field-name="model_name" display-name="Model" enable-filtering="true"
+                                    order-by-reverse="carCtrl.selected.sortByReverse" filter-by="carCtrl.selected.filter"></th>
+                                <th field-name="model_trim" display-name="Trim" enable-filtering="true"
+                                    order-by-reverse="carCtrl.selected.sortByReverse" filter-by="carCtrl.selected.filter"></th>
+                                <th field-name="body_style" display-name="Style" enable-filtering="true"
+                                    order-by-reverse="carCtrl.selected.sortByReverse" filter-by="carCtrl.selected.filter"></th>
+                                <th display-name="Action" enable-sorting="false" enable-filtering="false" display-align="center"></th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td><button type="button" class="btn  btn-sm btn-default" ng-click="carCtrl.open(gridItem.id)">View</button></td>
+                        </tr>
+                    </table>
+                    <script type="text/ng-template" id="carModal.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title">
+                                Car Details
+                            </h3>
+                            <button class="btn btn-default" ng-click="cm.cancel()">X</button>
+
+                        </div>
+                        <div class="modal-body">
+
+                            {{cm.car.model_year}} {{cm.car.Car.make}} - {{cm.car.Car.model_name}} {{cm.car.Car.model_trim}}
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" ng-click="cm.ok()">Close</button>
+                        </div>
+                    </script>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</main>
+    <!-- ==============================================
+     FOOTER
+     =============================================== -->
+
+
+
+
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/Scripts/angular.min.js"></script>
+    <script src="/Scripts/angular-ui/ui-bootstrap.min.js"></script>
+    <script src="/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <!-- ==============================================
+        Script files For the template
+        =============================================== -->
+    <script src="/js/jquery.singlePageNav.min.js"></script>
+    <script src="/js/jquery.fancybox.pack.js"></script>
+
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jquery.easing.min.js"></script>
+    <script src="/js/jquery.slitslider.js"></script>
+    <script src="/js/jquery.ba-cond.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/main.js"></script>
+
+    <script src="/CarApp/trNgGrid.min.js"></script>
+    <script src="/CarApp/app.js"></script>
+    <script src="/CarApp/CarController.js"></script>
+    <script src="/CarApp/testCarSrv.js"></script>
+
+</body>
+</html>
+
+
+
