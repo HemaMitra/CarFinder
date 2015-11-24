@@ -119,10 +119,10 @@ $(document).ready(function(){
     // Slider Height
     var slideHeight = $(window).height();
     
-    $('#home-slider, #slider, .sl-slider, .sl-content-wrapper').css('height',slideHeight);
+    $('#slider, .sl-slider, .sl-content-wrapper').css('height',slideHeight);
 
     $(window).resize(function(){'use strict',
-        $('#home-slider, #slider, .sl-slider, .sl-content-wrapper').css('height',slideHeight);
+        $('#slider, .sl-slider, .sl-content-wrapper').css('height',slideHeight);
     });
 	
 	

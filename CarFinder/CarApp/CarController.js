@@ -129,7 +129,7 @@
         this.getYears();
 
         this.open = function (id) {
-            console.log(id);
+            //console.log(id);
             var modalInstance = $modal.open({
                 animation: true,
                 templateUrl: 'carModal.html',
@@ -144,7 +144,7 @@
             });
         }
 
-    }]);
+    }])
 
 
     // Angular Modal Controller

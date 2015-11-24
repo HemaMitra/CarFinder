@@ -49,7 +49,7 @@ namespace CarFinder.Controllers
 
         // Get AllYears from the cars table
         /// <summary>
-        /// This action calls a stored procedure AllYears.
+        /// This action calls a stored procedure AllYears which gets all the years listed in the cars database.
         /// </summary>
         /// <returns>List of all the years of datatype string.</returns>
         [HttpPost]
@@ -61,7 +61,7 @@ namespace CarFinder.Controllers
 
         // Get Makes By Year
         /// <summary>
-        /// This action calls a stored procedure MakesByYear.
+        /// This action calls a stored procedure MakesByYear and gets all the Makes for the required year.
         /// </summary>
         /// <param name="year"></param>
         /// <returns>A list of all makes of datatype string based on the input parameters.</returns>
@@ -75,7 +75,7 @@ namespace CarFinder.Controllers
 
         // Get Models By Year and Make
         /// <summary>
-        /// This action calls a stored procedure ModelsByYearMake.
+        /// This action calls a stored procedure ModelsByYearMake and gets all the Models for the required Year and Make.
         /// </summary>
         /// <param name="year"></param>
         /// <param name="make"></param>
@@ -90,7 +90,7 @@ namespace CarFinder.Controllers
 
         // Get Trims by Year, Make and Model
         /// <summary>
-        /// This action calls a stored procedure Trims.
+        /// This action calls a stored procedure Trims and gets all the trims for the required Year, Make and Model.
         /// </summary>
         /// <param name="year"></param>
         /// <param name="make"></param>
@@ -120,7 +120,7 @@ namespace CarFinder.Controllers
 
         // Get Cars by Year and Make
         /// <summary>
-        /// This action calls a stored procedure CarsByYearMake.
+        /// This action calls a stored procedure CarsByYearMake and gets all the Cars for the required Year.
         /// </summary>
         /// <param name="year"></param>
         /// <param name="make"></param>
@@ -135,7 +135,7 @@ namespace CarFinder.Controllers
 
         // Get Cars by Year, Make and Model
         /// <summary>
-        /// This action calls a stored procedure CarsYearMakeModel.
+        /// This action calls a stored procedure CarsYearMakeModel and returns all the Cars for the required Year, Make and Model.
         /// </summary>
         /// <param name="year"></param>
         /// <param name="make"></param>
@@ -150,7 +150,7 @@ namespace CarFinder.Controllers
 
         // Get Cars by Year, Make, Model and Trim
         /// <summary>
-        /// This action calls a stored procedure CarsYearMakeModelTrim.
+        /// This action calls a stored procedure CarsYearMakeModelTrim and returns all the Cars for the required Year, Make, Model and Trim.
         /// </summary>
         /// <param name="year"></param>
         /// <param name="make"></param>
@@ -195,10 +195,9 @@ namespace CarFinder.Controllers
             return Ok(await db.GetCarCount(selected.year, selected.make, selected.model, selected.trim, selected.filter));
         }
 
-
-
         /// <summary>
-        /// This action calls a stored procedure GetCar.
+        /// This action calls a stored procedure GetCar and returns all the information for a particular Car.
+        /// This information includes the car image (if any). It also gets the recall information (if any) listed with NHTSA.
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Image and recall information (if any) for the car specified by the id.</returns>
