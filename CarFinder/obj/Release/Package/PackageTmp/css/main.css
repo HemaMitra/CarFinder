@@ -167,11 +167,11 @@ main > section {
 }
 
 .sec-title h2 {
-    font-size: 36px;
+    font-size: 28px;
     margin: 0 0 30px;
     padding-bottom: 30px;
     position: relative;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 .sec-title.white h2 {

@@ -72,11 +72,21 @@ padding:0;
 
 }
 
-
+.pull-center{
+  align-self:center;
+}
 .parallax-zindex{
     z-index:1001;
+}
+.social-zindex{
+    z-index:1005;
 }
 
 .topmargin {
 margin-top:-475px;
+}
+
+
+.text-size{
+    font-size:20px;
 }
