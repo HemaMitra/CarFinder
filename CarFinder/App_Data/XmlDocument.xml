@@ -578,7 +578,7 @@
             <summary>
             This action calls a stored procedure MakesByYear and gets all the Makes for the required year.
             </summary>
-            <param name="year"></param>
+            <param name="year">Gets a list of Makes by given year</param>
             <returns>A list of all makes of datatype string based on the input parameters.</returns>
         </member>
         <member name="M:CarFinder.Controllers.WebApiController.ModelsByYearMake(CarFinder.Controllers.WebApiController.ControllerParams)">
@@ -593,7 +593,7 @@
             <summary>
             This action calls a stored procedure Trims and gets all the trims for the required Year, Make and Model.
             </summary>
-            <param name="year"></param>
+            <param name="year">Year of the desired car</param>
             <param name="make"></param>
             <param name="model"></param>
             <returns>A list of all the trims of datatype string based on the input parameters.</returns>
@@ -602,7 +602,7 @@
             <summary>
             This action calls a stored procedure CarsByYear.
             </summary>
-            <param name="year"></param>
+            <param name="year">Year of car to search for.</param>
             <returns>A list of all the cars based on the input parameter year.</returns>
         </member>
         <member name="M:CarFinder.Controllers.WebApiController.CarsByYearMake(CarFinder.Controllers.WebApiController.ControllerParams)">

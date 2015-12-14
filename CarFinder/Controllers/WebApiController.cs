@@ -63,9 +63,8 @@ namespace CarFinder.Controllers
         /// <summary>
         /// This action calls a stored procedure MakesByYear and gets all the Makes for the required year.
         /// </summary>
-        /// <param name="year"></param>
+        /// <param name="year">Gets a list of Makes by given year</param>
         /// <returns>A list of all makes of datatype string based on the input parameters.</returns>
-        
         [HttpPost]
         [Route("MakesByYear")]
         public async Task<IHttpActionResult> MakesByYear(ControllerParams selected)
@@ -80,7 +79,6 @@ namespace CarFinder.Controllers
         /// <param name="year"></param>
         /// <param name="make"></param>
         /// <returns>A list of all the models of datatype string based on the input parameters.</returns>
-        
         [HttpPost]
         [Route("ModelsByYearMake")]
         public async Task<IHttpActionResult> ModelsByYearMake(ControllerParams selected)
@@ -92,7 +90,7 @@ namespace CarFinder.Controllers
         /// <summary>
         /// This action calls a stored procedure Trims and gets all the trims for the required Year, Make and Model.
         /// </summary>
-        /// <param name="year"></param>
+        /// <param name="year">Year of the desired car</param>
         /// <param name="make"></param>
         /// <param name="model"></param>
         /// <returns>A list of all the trims of datatype string based on the input parameters.</returns>
@@ -108,9 +106,8 @@ namespace CarFinder.Controllers
         /// <summary>
         /// This action calls a stored procedure CarsByYear.
         /// </summary>
-        /// <param name="year"></param>
+        /// <param name="year">Year of car to search for.</param>
         /// <returns>A list of all the cars based on the input parameter year.</returns>
-        
         [HttpPost]
         [Route("CarsByYear")]
         public async Task<IHttpActionResult> CarsByYear(ControllerParams selected)
