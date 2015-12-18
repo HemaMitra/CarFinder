@@ -22,18 +22,20 @@
     <!-- CSS
     ================================================== -->
 
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    
 
     <!-- bootstrap.min -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
+  
     <link href="/Content/trNgGrid.css" rel="stylesheet" />
     <link href="/Content/Site.css" rel="stylesheet" />
    
      <!-- Fontawesome Icon font -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!--<link rel="stylesheet" href="css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css" />
+
     <!-- bootstrap.min -->
-    <link rel="stylesheet" href="css/jquery.fancybox.css">
+    <link rel=" stylesheet" href="css/jquery.fancybox.css">
    
     <!-- bootstrap.min -->
     <link rel="stylesheet" href="css/owl.carousel.css">
@@ -71,7 +73,6 @@
                 <!-- /responsive nav button -->
                 <!-- logo -->
                 <h1 class="navbar-brand">
-                    <!--<a href="#body">Blue</a>-->
                     <span class="text-white">car</span><span class="text-warning">Finder</span>
                 </h1>
                 <!-- /logo -->
@@ -106,7 +107,8 @@
                         <div class="bg-img bg-img-1"></div>
                         <div class="slide-caption">
                             <div class="caption-content">
-                                <h2 class="animated fadeInDown">Car <span class="text-warning">Finder</span></h2>
+                                <!--<h2 class="animated fadeInDown">Car <span class="text-warning">Finder</span></h2>-->
+                                <h2>Car <span class="text-warning">Finder</span></h2>
                                 <span class="animated fadeInDown">Searches all the cars manufactured between 1936 and 2015</span>
                                 <a href="#testimonials" class="btn btn-blue btn-effect">Start Searching</a><br><br>
                                 <a href="#" class="btn btn-blue btn-effect">
@@ -139,7 +141,7 @@
                         <div class="bg-img bg-img-3"></div>
                         <div class="slide-caption">
                             <div class="caption-content">
-                                <h2>Car <span class="text-warning">Finder</span></h2>
+                                <<h2>Car <span class="text-warning">Finder</span></h2>
                                 <span>See recall information if any listed with NHTSA</span>
                                 <a href="#testimonials" class="btn btn-blue btn-effect">Start Searching</a><br><br>
                                 <a href="#" class="btn btn-blue btn-effect">
@@ -179,7 +181,7 @@
                         <p class="wow animated bounceInLeft">
                             <a href="https://github.com/hemamitra" target="_blank"><i class="fa fa-github"></i>GitHub</a>
                             <a href="http://carlister.azurewebsites.net/help" target="_blank"><i class="fa fa-globe"></i>WebApi</a>
-                            <a href="https://hmitra.azurewebsites.net/Home/Contact" target="_blank">Contact</a>
+                            <a href="https://hmitra.azurewebsites.net/Home/Contact" target="_blank"><i class="fa fa-envelope"></i>Contact</a>
                         </p>
                             <br>
                     </div>
@@ -187,10 +189,10 @@
                     <div class="col-md-3 col-sm-6 col-xs-12 text-center wow animated zoomIn">
                         <div class="service-item">
                             <div class="service-icon">
-                                <i class="fa fa-tasks fa-3x"></i>
+                                <i class="fa fa-mobile fa-3x"></i>
                             </div>
-                            <h3>Responsive</h3>
-                            <p>Fully Respponsive</p>
+                            <h3>Bootstrap</h3>
+                            <p>Fully Responsive</p>
                         </div>
                     </div>
 
@@ -201,7 +203,7 @@
                                 <img src="img/icons/angular1.jpg" />
                             </div>
                             <h3>AngularJs</h3>
-                            <p>Uses powerpacked AngularJs for front end design. </p>
+                            <p>Uses powerpacked AngularJs for front end design </p>
                         </div>
                     </div>
 
@@ -399,77 +401,77 @@
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6">
                                                                     <div class="row">
-                                                                        <div class="col-md-4 col-sm-4">
+                                                                        <div class="col-md-4 col-sm-4 text-bold">
                                                                             Year
                                                                         </div>
                                                                         <div class="col-md-8 col-sm-8">
-                                                                            {{cm.car.car.model_year}}
+                                                                            : {{cm.car.car.model_year}}
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col-md-4 col-sm-4">
+                                                                        <div class="col-md-4 col-sm-4 text-bold">
                                                                             Trim
                                                                         </div>
                                                                         <div class="col-md-8 col-sm-8">
-                                                                            {{cm.car.car.model_trim}}
+                                                                            : {{cm.car.car.model_trim}}
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col-md-4 col-sm-4">
+                                                                        <div class="col-md-4 col-sm-4 text-bold">
                                                                             Body Style
                                                                         </div>
                                                                         <div class="col-md-8 col-sm-8">
-                                                                            {{cm.car.car.body_style}}
+                                                                            : {{cm.car.car.body_style}}
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col-md-4 col-sm-4">
+                                                                        <div class="col-md-4 col-sm-4 text-bold">
                                                                             Fuel Type
                                                                         </div>
                                                                         <div class="col-md-8 col-sm-8">
-                                                                            {{cm.car.car.engine_fuel}}
+                                                                            : {{cm.car.car.engine_fuel}}
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col-md-4 col-sm-4">
+                                                                        <div class="col-md-4 col-sm-4 text-bold">
                                                                             Fuel Capacity
                                                                         </div>
                                                                         <div class="col-md-8 col-sm-8">
-                                                                            {{cm.car.car.fuel_capacity_l}}
+                                                                            : {{cm.car.car.fuel_capacity_l}}
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col-md-4 col-sm-4">
+                                                                        <div class="col-md-4 col-sm-4 text-bold">
                                                                             Engine Position
                                                                         </div>
                                                                         <div class="col-md-8 col-sm-8">
-                                                                            {{cm.car.car.engine_position}}
+                                                                            : {{cm.car.car.engine_position}}
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col-md-4 col-sm-4">
+                                                                        <div class="col-md-4 col-sm-4 text-bold">
                                                                             Engine Power (RPM)
                                                                         </div>
                                                                         <div class="col-md-8 col-sm-8">
-                                                                            {{cm.car.car.engine_power_rpm}}
+                                                                            : {{cm.car.car.engine_power_rpm}}
                                                                         </div>
                                                                     </div>
 
 
                                                                     <div class="row">
-                                                                        <div class="col-md-4 col-sm-4">
+                                                                        <div class="col-md-4 col-sm-4 text-bold">
                                                                             Transmission Type
                                                                         </div>
                                                                         <div class="col-md-8 col-sm-8">
-                                                                            {{cm.car.car.transmission_type}}
+                                                                            : {{cm.car.car.transmission_type}}
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <div class="col-md-4 col-sm-4">
+                                                                        <div class="col-md-4 col-sm-4 text-bold">
                                                                             Times Sold In US
                                                                         </div>
                                                                         <div class="col-md-8 col-sm-8">
-                                                                            {{cm.car.car.sold_in_us}}
+                                                                            : {{cm.car.car.sold_in_us}}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -619,9 +621,9 @@
     <!-- Single Page Nav -->
     <script src="js/jquery.singlePageNav.min.js"></script>
     <!-- jquery.fancybox.pack -->
-    <script src="js/jquery.fancybox.pack.js"></script>
-    <!-- Google Map API -->
-    <!--<script src="http://maps.google.com/maps/api/js?sensor=false"></script>-->
+    <!--<script src="js/jquery.fancybox.pack.js"></script>-->
+    
+    
     <!-- Owl Carousel -->
     <script src="js/owl.carousel.min.js"></script>
     <!-- jquery easing -->

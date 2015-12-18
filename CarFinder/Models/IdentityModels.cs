@@ -156,21 +156,5 @@ namespace CarFinder.Models
                 ("GetCarCount @year,@make,@model,@trim,@filter",yearParm,makeParm,modelParm,trimParm,filterParm).FirstOrDefaultAsync();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

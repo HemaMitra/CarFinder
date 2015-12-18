@@ -15,6 +15,9 @@ using System.Configuration;
 
 namespace CarFinder.Controllers
 {
+    /// <summary>
+    /// The WebApi Controller
+    /// </summary>
     [RoutePrefix("api/WebApi")]
     public class WebApiController : ApiController
     {   
@@ -26,6 +29,9 @@ namespace CarFinder.Controllers
         /// </summary>
         public class IdParm
         {
+            /// <summary>
+            /// id property for the IdParm Class
+            /// </summary>
             public int id { get; set; }
         }
         /// <summary>
@@ -33,16 +39,49 @@ namespace CarFinder.Controllers
         /// </summary>
         public class ControllerParams
         {
+            /// <summary>
+            /// Search year for the car
+            /// </summary>
             public string year { get; set; }
+            /// <summary>
+            /// Make of the car to be searched for
+            /// </summary>
             public string make { get; set; }
+            /// <summary>
+            /// Model of the car to be searched for
+            /// </summary>
             public string model { get; set; }
+            /// <summary>
+            /// Trim of the car to be saerched for
+            /// </summary>
             public string trim { get; set; }
+            /// <summary>
+            /// Special search string
+            /// </summary>
             public string filter { get; set; }
+            /// <summary>
+            /// Paging enabled or not
+            /// </summary>
             public bool? paging { get; set; }
+            /// <summary>
+            /// Page no
+            /// </summary>
             public int? page { get; set; }
+            /// <summary>
+            /// How many records to be displayed per page
+            /// </summary>
             public int? perpage { get; set; }
+            /// <summary>
+            /// Column to sort with
+            /// </summary>
             public string sortcolumn { get; set; }
+            /// <summary>
+            /// Sort direction Ascending or Descending
+            /// </summary>
             public string sortdirection { get; set; }
+            /// <summary>
+            /// Reverse Sort
+            /// </summary>
             public bool? sortByReverse { get; set; }
             
         }
@@ -63,7 +102,7 @@ namespace CarFinder.Controllers
         /// <summary>
         /// This action calls a stored procedure MakesByYear and gets all the Makes for the required year.
         /// </summary>
-        /// <param name="year">Gets a list of Makes by given year</param>
+        /// <param name="selected">An object with select parameter Year</param>
         /// <returns>A list of all makes of datatype string based on the input parameters.</returns>
         [HttpPost]
         [Route("MakesByYear")]
@@ -76,8 +115,7 @@ namespace CarFinder.Controllers
         /// <summary>
         /// This action calls a stored procedure ModelsByYearMake and gets all the Models for the required Year and Make.
         /// </summary>
-        /// <param name="year"></param>
-        /// <param name="make"></param>
+        /// <param name="selected">An object with select parameters Year and Make</param>
         /// <returns>A list of all the models of datatype string based on the input parameters.</returns>
         [HttpPost]
         [Route("ModelsByYearMake")]
@@ -88,13 +126,10 @@ namespace CarFinder.Controllers
 
         // Get Trims by Year, Make and Model
         /// <summary>
-        /// This action calls a stored procedure Trims and gets all the trims for the required Year, Make and Model.
+        /// This action calls a stored procedure Trims and gets all the Trims for the required Year, Make and Model.
         /// </summary>
-        /// <param name="year">Year of the desired car</param>
-        /// <param name="make"></param>
-        /// <param name="model"></param>
-        /// <returns>A list of all the trims of datatype string based on the input parameters.</returns>
-        
+        /// <param name="selected">An object with selected parameters Year, Make and Model</param>
+        /// <returns>A list of trims by Year, Make and Model</returns>
         [HttpPost]
         [Route("Trims")]
         public async Task<IHttpActionResult> Trims(ControllerParams selected)
@@ -106,7 +141,7 @@ namespace CarFinder.Controllers
         /// <summary>
         /// This action calls a stored procedure CarsByYear.
         /// </summary>
-        /// <param name="year">Year of car to search for.</param>
+        /// <param name="selected">An object with selected parameters Year</param>
         /// <returns>A list of all the cars based on the input parameter year.</returns>
         [HttpPost]
         [Route("CarsByYear")]
@@ -119,10 +154,8 @@ namespace CarFinder.Controllers
         /// <summary>
         /// This action calls a stored procedure CarsByYearMake and gets all the Cars for the required Year.
         /// </summary>
-        /// <param name="year"></param>
-        /// <param name="make"></param>
+        /// <param name="selected">An object with selected parameters Year and Make</param>
         /// <returns>A list of cars based on the input parameters year and make.</returns>
-        
         [HttpPost]
         [Route("CarsByYearMake")]
         public async Task<IHttpActionResult> CarsByYearMake(ControllerParams selected)
@@ -134,9 +167,7 @@ namespace CarFinder.Controllers
         /// <summary>
         /// This action calls a stored procedure CarsYearMakeModel and returns all the Cars for the required Year, Make and Model.
         /// </summary>
-        /// <param name="year"></param>
-        /// <param name="make"></param>
-        /// <param name="model"></param>
+        /// <param name="selected">An object with selected parameters Year, Make and Model</param>
         /// <returns>A list of cars based on the input parameters year, make and model.</returns>
         [HttpPost]
         [Route("CarsYearMakeModel")]
@@ -149,10 +180,7 @@ namespace CarFinder.Controllers
         /// <summary>
         /// This action calls a stored procedure CarsYearMakeModelTrim and returns all the Cars for the required Year, Make, Model and Trim.
         /// </summary>
-        /// <param name="year"></param>
-        /// <param name="make"></param>
-        /// <param name="model"></param>
-        /// <param name="trim"></param>
+        /// <param name="selected">An object with selected parameters Year, Make, Model and Trim</param>
         /// <returns>A list of cars based on the input parameters year, make, model and trim.</returns>
         [HttpPost]
         [Route("CarsYearMakeModelTrim")]
@@ -171,7 +199,7 @@ namespace CarFinder.Controllers
         ///             If paging is off, all the records will be displayed at once.
         /// </summary>
         /// <param name="selected">Object of class ControllerParm</param>
-        /// <returns></returns>
+        /// <returns>A list of cars</returns>
         [HttpPost]
         [Route("GetSearchCar")]
         public async Task<IHttpActionResult> GetSearchCar(ControllerParams selected)
@@ -183,8 +211,8 @@ namespace CarFinder.Controllers
         /// <summary>
         /// Gets the count of selected cars for server side data tables
         /// </summary>
-        /// <param name="selected"></param>
-        /// <returns></returns>
+        /// <param name="selected">An object with selected parameters Year, Make, Model, Trim and filter</param>
+        /// <returns>Car Count</returns>
         [HttpPost]
         [Route("GetCarCount")]
         public async Task<IHttpActionResult> GetCarCount(ControllerParams selected)
@@ -196,7 +224,7 @@ namespace CarFinder.Controllers
         /// This action calls a stored procedure GetCar and returns all the information for a particular Car.
         /// This information includes the car image (if any). It also gets the recall information (if any) listed with NHTSA.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id of the car for which information is required</param>
         /// <returns>Image and recall information (if any) for the car specified by the id.</returns>
         [HttpPost]
         [Route("GetCar")]
